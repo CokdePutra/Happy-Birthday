@@ -1,17 +1,17 @@
 // trigger to play music in the background with sweetalert
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   Swal.fire({
-    title: 'Do you want to play music in the background?',
+    title: "Do you want to play music in the background?",
     // text: "You won't be able to revert this!",
-    icon: 'warning',
+    icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No',
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      document.querySelector('.song').play();
+      document.querySelector(".song").play();
       resolveFetch().then(animationTimeline());
     } else {
       resolveFetch().then(animationTimeline());
@@ -22,153 +22,149 @@ window.addEventListener('load', () => {
 // animation timeline
 const animationTimeline = () => {
   // split chars that needs to be animated individually
-  const textBoxChars = document.getElementsByClassName('hbd-chatbox')[0];
-  const hbd = document.getElementsByClassName('wish-hbd')[0];
+  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
+  const hbd = document.getElementsByClassName("wish-hbd")[0];
 
-  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML.split('').join('</span><span>')}</span`;
+  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
+    .split("")
+    .join("</span><span>")}</span`;
 
-  hbd.innerHTML = `<span>${hbd.innerHTML.split('').join('</span><span>')}</span`;
+  hbd.innerHTML = `<span>${hbd.innerHTML
+    .split("")
+    .join("</span><span>")}</span`;
 
   const ideaTextTrans = {
     opacity: 0,
     y: -20,
     rotationX: 5,
-    skewX: '15deg',
+    skewX: "15deg",
   };
 
   const ideaTextTransLeave = {
     opacity: 0,
     y: 20,
     rotationY: 5,
-    skewX: '-15deg',
+    skewX: "-15deg",
   };
 
   // timeline
   const tl = new TimelineMax();
 
-  tl.to('.container', 0.6, {
-    visibility: 'visible',
+  tl.to(".container", 0.6, {
+    visibility: "visible",
   })
-    .from('.one', 0.7, {
+    .from(".one", 0.7, {
       opacity: 0,
       y: 10,
     })
-    .from('.two', 0.4, {
+    .from(".two", 0.4, {
       opacity: 0,
       y: 10,
     })
     .to(
-      '.one',
+      ".one",
       0.7,
       {
         opacity: 0,
         y: 10,
       },
-      '+=3.5'
+      "+=3.5"
     )
     .to(
-      '.two',
+      ".two",
       0.7,
       {
         opacity: 0,
         y: 10,
       },
-      '-=1'
+      "-=1"
     )
-    .from('.three', 0.7, {
+    .from(".three", 0.7, {
       opacity: 0,
       y: 10,
     })
     .to(
-      '.three',
+      ".three",
       0.7,
       {
         opacity: 0,
         y: 10,
       },
-      '+=3'
+      "+=3"
     )
-    .from('.four', 0.7, {
+    .from(".four", 0.7, {
       scale: 0.2,
       opacity: 0,
     })
-    .from('.fake-btn', 0.3, {
+    .from(".fake-btn", 0.3, {
       scale: 0.2,
       opacity: 0,
     })
     .staggerTo(
-      '.hbd-chatbox span',
+      ".hbd-chatbox span",
       1.5,
       {
-        visibility: 'visible',
+        visibility: "visible",
       },
       0.05
     )
     .to(
-      '.fake-btn',
+      ".fake-btn",
       0.1,
       {
-        backgroundColor: 'rgb(127, 206, 248)',
+        backgroundColor: "rgb(127, 206, 248)",
       },
-      '+=4'
+      "+=4"
     )
     .to(
-      '.four',
+      ".four",
       0.5,
       {
         scale: 0.2,
         opacity: 0,
         y: -150,
       },
-      '+=1'
+      "+=1"
     )
-    .from('.idea-1', 0.7, ideaTextTrans)
-    .to('.idea-1', 0.7, ideaTextTransLeave, '+=2.5')
-    .from('.idea-2', 0.7, ideaTextTrans)
-    .to('.idea-2', 0.7, ideaTextTransLeave, '+=2.5')
-    .from('.idea-3', 0.7, ideaTextTrans)
-    .to('.idea-3 strong', 0.5, {
-      scale: 1.2,
-      x: 10,
-      backgroundColor: 'rgb(21, 161, 237)',
-      color: '#fff',
-    })
-    .to('.idea-3', 0.7, ideaTextTransLeave, '+=2.5')
-    .from('.idea-4', 0.7, ideaTextTrans)
-    .to('.idea-4', 0.7, ideaTextTransLeave, '+=2.5')
+    .from(".idea-1", 0.7, ideaTextTrans)
+    .to(".idea-1", 0.7, ideaTextTransLeave, "+=2.5")
+    .from(".idea-2", 0.7, ideaTextTrans)
+    .to(".idea-2", 0.7, ideaTextTransLeave, "+=2.5")
+    .from(".idea-4", 0.7, ideaTextTrans)
+    .to(".idea-4", 0.7, ideaTextTransLeave, "+=2.5")
     .from(
-      '.idea-5',
+      ".idea-5",
       0.7,
       {
         rotationX: 15,
         rotationZ: -10,
-        skewY: '-5deg',
+        skewY: "-5deg",
         y: 50,
         z: 10,
         opacity: 0,
       },
-      '+=1.5'
+      "+=1.5"
     )
     .to(
-      '.idea-5 span',
+      ".idea-5 span",
       0.7,
       {
         rotation: 90,
         x: 8,
       },
-      '+=1.4'
+      "+=1.4"
     )
     .to(
-      '.idea-5',
+      ".idea-5",
       0.7,
       {
         scale: 0.2,
         opacity: 0,
       },
-      '+=2'
+      "+=2"
     )
     .staggerFrom(
-      '.idea-6 span',
+      ".idea-6 span",
       0.8,
       {
         scale: 3,
@@ -179,7 +175,7 @@ const animationTimeline = () => {
       0.2
     )
     .staggerTo(
-      '.idea-6 span',
+      ".idea-6 span",
       0.8,
       {
         scale: 3,
@@ -188,10 +184,10 @@ const animationTimeline = () => {
         ease: Expo.easeOut,
       },
       0.2,
-      '+=1.5'
+      "+=1.5"
     )
     .staggerFromTo(
-      '.baloons img',
+      ".baloons img",
       2.5,
       {
         opacity: 0.9,
@@ -204,7 +200,7 @@ const animationTimeline = () => {
       0.2
     )
     .from(
-      '.profile-picture',
+      ".profile-picture",
       0.5,
       {
         scale: 3.5,
@@ -213,29 +209,29 @@ const animationTimeline = () => {
         y: -25,
         rotationZ: -45,
       },
-      '-=2'
+      "-=2"
     )
-    .from('.hat', 0.5, {
+    .from(".hat", 0.5, {
       x: -100,
       y: 350,
       rotation: -180,
       opacity: 0,
     })
     .staggerFrom(
-      '.wish-hbd span',
+      ".wish-hbd span",
       0.7,
       {
         opacity: 0,
         y: -50,
         // scale: 0.3,
         rotation: 150,
-        skewX: '30deg',
+        skewX: "30deg",
         ease: Elastic.easeOut.config(1, 0.5),
       },
       0.1
     )
     .staggerFromTo(
-      '.wish-hbd span',
+      ".wish-hbd span",
       0.7,
       {
         scale: 1.4,
@@ -244,27 +240,27 @@ const animationTimeline = () => {
       {
         scale: 1,
         rotationY: 0,
-        color: '#ff69b4',
+        color: "#ff69b4",
         ease: Expo.easeOut,
       },
       0.1,
-      'party'
+      "party"
     )
     .from(
-      '.wish h5',
+      ".wish h5",
       0.5,
       {
         opacity: 0,
         y: 10,
-        skewX: '-15deg',
+        skewX: "-15deg",
       },
-      'party'
+      "party"
     )
     .staggerTo(
-      '.eight svg',
+      ".eight svg",
       1.5,
       {
-        visibility: 'visible',
+        visibility: "visible",
         opacity: 0,
         scale: 80,
         repeat: 3,
@@ -272,37 +268,39 @@ const animationTimeline = () => {
       },
       0.3
     )
-    .to('.six', 0.5, {
+    .to(".six", 0.5, {
       opacity: 0,
       y: 30,
-      zIndex: '-1',
+      zIndex: "-1",
     })
-    .staggerFrom('.nine p', 1, ideaTextTrans, 1.2)
+    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(
-      '.last-smile',
+      ".last-smile",
       0.5,
       {
         rotation: 90,
       },
-      '+=1'
+      "+=1"
     );
 
   // Restart Animation on click
-  const replyBtn = document.getElementById('replay');
-  replyBtn.addEventListener('click', () => {
+  const replyBtn = document.getElementById("replay");
+  replyBtn.addEventListener("click", () => {
     tl.restart();
   });
 };
 
 // Import the data to customize and insert them into page
 const fetchData = () => {
-  fetch('customize.json')
+  fetch("customize.json")
     .then((data) => data.json())
     .then((data) => {
       Object.keys(data).map((customData) => {
-        if (data[customData] !== '') {
-          if (customData === 'imagePath') {
-            document.getElementById(customData).setAttribute('src', data[customData]);
+        if (data[customData] !== "") {
+          if (customData === "imagePath") {
+            document
+              .getElementById(customData)
+              .setAttribute("src", data[customData]);
           } else {
             document.getElementById(customData).innerText = data[customData];
           }
@@ -315,6 +313,6 @@ const fetchData = () => {
 const resolveFetch = () => {
   return new Promise((resolve, reject) => {
     fetchData();
-    resolve('Fetch done!');
+    resolve("Fetch done!");
   });
 };
