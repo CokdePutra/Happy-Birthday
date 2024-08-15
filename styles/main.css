@@ -50,6 +50,10 @@ body {
   width: 600px;
 }
 
+.text-box .hbd-chatbox {
+  text-align: justify;
+}
+
 .text-box p {
   margin: 0;
   text-align: left;
